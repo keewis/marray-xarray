@@ -1,7 +1,7 @@
 # -- Project information -----------------------------------------------------
 import datetime as dt
 
-project = "MArray integration for xarray"
+project = "marray-xarray"
 author = f"{project} developers"
 initial_year = "2025"
 year = dt.datetime.now().year
@@ -16,10 +16,19 @@ root_doc = "index"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    # external links
     "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
+    # document formats
+    "myst_parser",
+    # ipython directive
     "IPython.sphinxext.ipython_directive",
     "IPython.sphinxext.ipython_console_highlighting",
+    # docstrings
+    "sphinx.ext.autosummary",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
+    "sphinx_autosummary_accessors",
 ]
 
 extlinks = {
