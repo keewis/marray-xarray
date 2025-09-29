@@ -10,3 +10,19 @@ version = "0.1.0"
 [dependencies]
 xarray = ">=2025.9.0"
 marray-python = ">=0.0.12"
+
+[feature.tests.dependencies]
+pytest = "*"
+pytest-reportlog = "*"
+pytest-cov = ">=7.0.0,<8"
+pytest-xdist = ">=3.8.0,<4"
+
+[feature.ci-py313.dependencies]
+python = "3.13.*"
+
+[feature.ci-py311.dependencies]
+python = "3.11.*"
+
+[environments]
+ci-py311 = { features = ["tests", "ci-py311"] }
+ci-py313 = { features = ["tests", "ci-py313"] }
