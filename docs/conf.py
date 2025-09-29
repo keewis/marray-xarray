@@ -1,5 +1,7 @@
 # -- Project information -----------------------------------------------------
+import sphinx_autosummary_accessors
 import datetime as dt
+import marray_xarray
 
 project = "marray-xarray"
 author = f"{project} developers"
@@ -37,7 +39,7 @@ extlinks = {
 }
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+templates_path = ["_templates", sphinx_autosummary_accessors.templates_path]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -49,6 +51,11 @@ exclude_patterns = ["_build", "directory"]
 
 myst_enable_extensions = ["colon_fence"]
 
+
+# -- autosummary / napoleon --------------------------------------------------
+
+autosummary_generate = True
+autodoc_typehints = "none"
 
 # -- Options for HTML output -------------------------------------------------
 

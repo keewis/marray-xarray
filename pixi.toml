@@ -11,6 +11,9 @@ version = "0.1.0"
 xarray = ">=2025.9.0"
 marray-python = ">=0.0.12"
 
+[pypi-dependencies]
+marray-xarray = { path = ".", editable = true }
+
 [feature.tests.dependencies]
 pytest = "*"
 pytest-reportlog = "*"
