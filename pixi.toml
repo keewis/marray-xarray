@@ -8,3 +8,5 @@ version = "0.1.0"
 [tasks]
 
 [dependencies]
+xarray = ">=2025.9.0"
+marray-python = ">=0.0.12"
