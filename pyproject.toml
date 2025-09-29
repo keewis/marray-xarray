@@ -2,18 +2,23 @@
 name = "marray-xarray"
 requires-python = ">= 3.13"
 license = { text = "Apache-2.0" }
-dependencies = []
+dependencies = [
+  "xarray>=2025.09.0",
+  "marray>=0.0.12",
+]
 dynamic = ["version"]
 
 [build-system]
-requires = ["setuptools>=64.0", "setuptools-scm"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "hatchling-vcs"]
+build-backend = "hatchling.build"
 
 [tool.setuptools]
 packages = ["marray_xarray"]
 
-[tool.setuptools_scm]
-fallback_version = "9999"
+[tool.hatch]
+version.source = "vcs"
+[tool.hatch.build.targets.sdist]
+only-include = ["marray_xarray"]
 
 [tool.ruff]
 builtins = ["ellipsis"]
@@ -55,3 +60,11 @@ known-third-party = []
 
 [tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
+
+[tool.coverage.run]
+source = ["marray_xarray"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = ["pragma: no cover", "if TYPE_CHECKING"]
