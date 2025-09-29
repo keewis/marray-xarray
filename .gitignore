@@ -20,3 +20,7 @@ __pycache__/
 .coverage.*
 .cache
 /docs/_build/
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+pixi.lock

@@ -1,8 +1,0 @@
-name: marray-xarray-docs
-channels:
-  - conda-forge
-dependencies:
-  - python=3.13
-  - sphinx>=4
-  - sphinx-book-theme
-  - ipython
