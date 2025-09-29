@@ -1,9 +1,0 @@
-name: marray-xarray-tests
-channels:
-  - conda-forge
-dependencies:
-  - python=3.13
-  - ipython
-  - pre-commit
-  - pytest
-  - pytest-reportlog

@@ -1,0 +1,10 @@
+[workspace]
+authors = []
+channels = ["conda-forge"]
+name = "marray-xarray"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
