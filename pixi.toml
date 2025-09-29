@@ -26,6 +26,8 @@ python = "3.11.*"
 [feature.dev.dependencies]
 ipython = "*"
 python = "3.13.*"
+pooch = ">=1.8.2,<2"
+netcdf4 = ">=1.7.2,<2"
 
 [environments]
 ci-py311 = { features = ["tests", "ci-py311"] }
