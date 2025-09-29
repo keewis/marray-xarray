@@ -23,6 +23,11 @@ python = "3.13.*"
 [feature.ci-py311.dependencies]
 python = "3.11.*"
 
+[feature.dev.dependencies]
+ipython = "*"
+python = "3.13.*"
+
 [environments]
 ci-py311 = { features = ["tests", "ci-py311"] }
 ci-py313 = { features = ["tests", "ci-py313"] }
+dev = ["dev", "tests"]
