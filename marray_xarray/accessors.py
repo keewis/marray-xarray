@@ -8,7 +8,7 @@ from marray_xarray.masking import mask_array
 
 @xr.register_dataarray_accessor("masked")
 @dataclass
-class MarrayAccessorDataArray:
+class MarrayDataArrayAccessor:
     obj: xr.DataArray
 
     def where(self, condition):
@@ -27,7 +27,7 @@ class MarrayAccessorDataArray:
 
 @xr.register_dataset_accessor("masked")
 @dataclass
-class MarrayAccessorDataset:
+class MarrayDatasetAccessor:
     obj: xr.Dataset
 
     def where(self, condition):
