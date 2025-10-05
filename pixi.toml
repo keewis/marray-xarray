@@ -36,6 +36,9 @@ sphinx-autobuild = ">=2024.10.3,<2025"
 [feature.dev.tasks]
 autobuild-docs = { cwd = "docs", cmd = "sphinx-autobuild -b html -ET -w warnings.log . _build" }
 
+[feature.dev.pypi-dependencies]
+pytest-accept = ">=0.2.2, <0.3"
+
 [feature.docs.dependencies]
 sphinx = "*"
 sphinx-autosummary-accessors = "*"
