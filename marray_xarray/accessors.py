@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from functools import partial
 
 import xarray as xr
@@ -5,14 +6,39 @@ import xarray as xr
 from marray_xarray.masking import mask_array
 
 
-@xr.register_dataset_accessor("masked")
 @xr.register_dataarray_accessor("masked")
-class MarrayAccessor:
-    def __init__(self, obj):
-        self._obj = obj
+@dataclass
+class MarrayAccessorDataArray:
+    obj: xr.DataArray
 
     def where(self, condition):
-        if isinstance(self._obj, xr.Dataset):
-            return self._obj.map(partial(mask_array, condition=condition))
-        else:
-            return mask_array(self._obj, condition)
+        """Mask by condition
+
+        If already masked, the new mask will be combined with the existing mask using
+        logical or.
+
+        Parameters
+        ----------
+        condition : xr.DataArray
+            New mask for the array.
+        """
+        return mask_array(self.obj, condition=condition)
+
+
+@xr.register_dataset_accessor("masked")
+@dataclass
+class MarrayAccessorDataset:
+    obj: xr.Dataset
+
+    def where(self, condition):
+        """Mask by condition
+
+        If already masked, the new mask will be combined with the existing mask using
+        logical or.
+
+        Parameters
+        ----------
+        condition : xr.DataArray
+            New mask for the array.
+        """
+        return self.obj.map(partial(mask_array, condition=condition))
