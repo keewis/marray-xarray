@@ -1,7 +1,7 @@
 # masked arrays for `xarray` using `marray`
 
 :::{toctree}
-:hidden: true
+:hidden:
 :caption: Reference guide
 
 api

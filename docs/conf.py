@@ -2,6 +2,7 @@
 import sphinx_autosummary_accessors
 import datetime as dt
 import marray_xarray
+import xarray as xr
 
 project = "marray-xarray"
 author = f"{project} developers"
@@ -27,9 +28,9 @@ extensions = [
     "IPython.sphinxext.ipython_directive",
     "IPython.sphinxext.ipython_console_highlighting",
     # docstrings
+    "sphinx.ext.napoleon",
     "sphinx.ext.autosummary",
     "sphinx.ext.autodoc",
-    "sphinx.ext.napoleon",
     "sphinx_autosummary_accessors",
 ]
 
@@ -40,11 +41,12 @@ extlinks = {
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates", sphinx_autosummary_accessors.templates_path]
+print("templates:", templates_path)
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ["_build", "directory"]
+exclude_patterns = ["_build"]
 
 
 # -- Myst configuration ------------------------------------------------------
