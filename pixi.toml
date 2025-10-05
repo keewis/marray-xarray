@@ -37,7 +37,7 @@ sphinx-autobuild = ">=2024.10.3,<2025"
 autobuild-docs = { cwd = "docs", cmd = "sphinx-autobuild -b html -ET -w warnings.log . _build" }
 
 [feature.docs.dependencies]
-sphinx = "<8"
+sphinx = "*"
 sphinx-autosummary-accessors = "*"
 myst-parser = ">=4.0.1,<5"
 sphinx-book-theme = ">=1.1.4,<2"
