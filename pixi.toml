@@ -46,6 +46,7 @@ jupyterlite-sphinx = "*"
 
 [feature.docs.tasks]
 build-docs = { cwd = "docs", cmd = "python -m sphinx -b html -ET -w warnings.log . _build" }
+build-docs-rtd = { cmd = "python -m sphinx -b html -W -T -j auto . $READTHEDOCS_OUTPUT/html", cwd = "docs" }
 
 [environments]
 ci-py311 = { features = ["tests", "ci-py311"] }
