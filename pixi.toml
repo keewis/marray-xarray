@@ -11,6 +11,9 @@ version = "0.1.0"
 xarray = ">=2025.9.0"
 marray-python = ">=0.0.12"
 
+[pypi-dependencies]
+marray-xarray = { path = ".", editable = true }
+
 [feature.tests.dependencies]
 pytest = "*"
 pytest-reportlog = "*"
@@ -26,8 +29,27 @@ python = "3.11.*"
 [feature.dev.dependencies]
 ipython = "*"
 python = "3.13.*"
+pooch = ">=1.8.2,<2"
+netcdf4 = ">=1.7.2,<2"
+sphinx-autobuild = ">=2024.10.3,<2025"
+
+[feature.dev.tasks]
+autobuild-docs = { cwd = "docs", cmd = "sphinx-autobuild -b html -ET -w warnings.log . _build" }
+
+[feature.docs.dependencies]
+sphinx = "*"
+sphinx-autosummary-accessors = "*"
+myst-parser = ">=4.0.1,<5"
+sphinx-book-theme = ">=1.1.4,<2"
+ipython = "*"
+jupyterlite-sphinx = "*"
+
+[feature.docs.tasks]
+build-docs = { cwd = "docs", cmd = "python -m sphinx -b html -ET -w warnings.log . _build" }
+build-docs-rtd = { cmd = "python -m sphinx -b html -W -T -j auto . $READTHEDOCS_OUTPUT/html", cwd = "docs" }
 
 [environments]
 ci-py311 = { features = ["tests", "ci-py311"] }
 ci-py313 = { features = ["tests", "ci-py313"] }
-dev = ["dev", "tests"]
+dev = ["dev", "tests", "docs"]
+docs = ["docs"]
