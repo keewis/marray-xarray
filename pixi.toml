@@ -2,7 +2,7 @@
 authors = []
 channels = ["conda-forge"]
 name = "marray-xarray"
-platforms = ["linux-64"]
+platforms = ["linux-64", "osx-arm64", "win-64"]
 version = "0.1.0"
 
 [tasks]
@@ -19,9 +19,16 @@ pytest = "*"
 pytest-reportlog = "*"
 pytest-cov = ">=7.0.0,<8"
 pytest-xdist = ">=3.8.0,<4"
+hypothesis = ">=6.142.2,<7"
+
+[feature.tests.pypi-dependencies]
+xarray-array-testing = { git = "https://github.com/xarray-contrib/xarray-array-testing.git", rev = "main" }
 
 [feature.ci-py313.dependencies]
 python = "3.13.*"
+
+[feature.tests.tasks]
+ci-tests = "pytest -n auto --cov=marray_xarray"
 
 [feature.ci-py311.dependencies]
 python = "3.11.*"
@@ -35,6 +42,7 @@ sphinx-autobuild = ">=2024.10.3,<2025"
 
 [feature.dev.tasks]
 autobuild-docs = { cwd = "docs", cmd = "sphinx-autobuild -b html -ET -w warnings.log . _build" }
+tests = "pytest -n auto --cov=marray_xarray"
 
 [feature.dev.pypi-dependencies]
 pytest-accept = ">=0.2.2, <0.3"
