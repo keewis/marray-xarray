@@ -1,6 +1,6 @@
 [project]
 name = "marray-xarray"
-requires-python = ">= 3.13"
+requires-python = ">= 3.11"
 license = { text = "Apache-2.0" }
 dependencies = [
   "xarray>=2025.09.0",
@@ -9,11 +9,8 @@ dependencies = [
 dynamic = ["version"]
 
 [build-system]
-requires = ["hatchling", "hatchling-vcs"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
-
-[tool.setuptools]
-packages = ["marray_xarray"]
 
 [tool.hatch]
 version.source = "vcs"

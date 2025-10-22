@@ -1,7 +1,10 @@
 # -- Project information -----------------------------------------------------
+import sphinx_autosummary_accessors
 import datetime as dt
+import marray_xarray
+import xarray as xr
 
-project = "MArray integration for xarray"
+project = "marray-xarray"
 author = f"{project} developers"
 initial_year = "2025"
 year = dt.datetime.now().year
@@ -16,10 +19,19 @@ root_doc = "index"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    # external links
     "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
+    # document formats
+    "myst_parser",
+    # ipython directive
     "IPython.sphinxext.ipython_directive",
     "IPython.sphinxext.ipython_console_highlighting",
+    # docstrings
+    "sphinx.ext.napoleon",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.autodoc",
+    "sphinx_autosummary_accessors",
 ]
 
 extlinks = {
@@ -28,20 +40,30 @@ extlinks = {
 }
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+templates_path = ["_templates", sphinx_autosummary_accessors.templates_path]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ["_build", "directory"]
+exclude_patterns = ["_build"]
 
+
+# -- Myst configuration ------------------------------------------------------
+
+myst_enable_extensions = ["colon_fence"]
+
+
+# -- autosummary / napoleon --------------------------------------------------
+
+autosummary_generate = True
+autodoc_typehints = "none"
 
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "sphinx-book-theme"
+html_theme = "sphinx_book_theme"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
