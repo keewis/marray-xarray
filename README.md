@@ -1,6 +1,7 @@
 # xarray integration for marray
 
 [![docs](https://readthedocs.org/projects/marray-xarray/badge/?version=latest)](https://marray-xarray.readthedocs.io)
+[![codestyle](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 
 ```{note}
 This package is experimental and will need quite a bit of work to be usable.
