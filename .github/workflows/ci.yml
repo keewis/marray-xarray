@@ -72,4 +72,4 @@ jobs:
         if: success()
         id: status
         run: |
-          pixi run -e ${{ matrix.env }} tests --cov=marray_xarray
+          pixi run -e ${{ matrix.env }} ci-tests --cov=marray_xarray
