@@ -19,6 +19,10 @@ pytest = "*"
 pytest-reportlog = "*"
 pytest-cov = ">=7.0.0,<8"
 pytest-xdist = ">=3.8.0,<4"
+hypothesis = ">=6.142.2,<7"
+
+[feature.tests.pypi-dependencies]
+xarray-array-testing = { git = "https://github.com/xarray-contrib/xarray-array-testing.git", rev = "main" }
 
 [feature.ci-py313.dependencies]
 python = "3.13.*"
