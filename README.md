@@ -1,5 +1,7 @@
 # xarray integration for marray
 
+[![docs](https://readthedocs.org/projects/marray-xarray/badge/?version=latest)](https://marray-xarray.readthedocs.io)
+
 ```{note}
 This package is experimental and will need quite a bit of work to be usable.
 ```
