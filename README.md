@@ -3,8 +3,8 @@
 [![docs](https://readthedocs.org/projects/marray-xarray/badge/?version=latest)](https://marray-xarray.readthedocs.io)
 [![codestyle](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 
-> [!NOTE]
-> This package is experimental and will need quite a bit of work to be usable.
+> [!WARNING]
+> This package is experimental and will change without warning.
 
 [marray](https://github.com/mdhaber/marray) provides a array API-compliant masked array implementation.
 
