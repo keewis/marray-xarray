@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FORCE_COLOR: 3
+
+jobs:
+  detect-ci-trigger:
+    name: detect ci trigger
+    runs-on: ubuntu-latest
+    if: |
+      github.repository_owner == 'keewis'
+      && (github.event_name == 'pull_request' || github.event_name == 'push')
+    outputs:
+      triggered: ${{ steps.detect-trigger.outputs.trigger-found }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+      - uses: xarray-contrib/ci-trigger@v1
+        id: detect-trigger
+        with:
+          keyword: "[skip-ci]"
+
+  tests:
+    name: ${{ matrix.os }} ${{ matrix.env }}
+    runs-on: ${{ matrix.os }}
+    needs: detect-ci-trigger
+    if: needs.detect-ci-trigger.outputs.triggered == 'false'
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        env: ["ci-py311", "ci-py313"]
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # Fetch all history for all branches and tags
+
+      - name: setup environment
+        uses: prefix-dev/setup-pixi@194d461b21b6c5717c722ffc597fa91ed2ff29fa # 0.9.1
+        with:
+          environments: "${{ matrix.env }}"
+
+      - name: investigate env variables
+        run: |
+          echo PYTHON_VERSION=$(pixi run -e ${{ matrix.env }} python -c 'import sys; print(".".join(map(str, sys.version_info[:2])))') >> $GITHUB_ENV
+          echo RUNNER_OS="${{ matrix.os }}"
+
+      - name: Import marray-xarray
+        run: |
+          pixi run -e ${{ matrix.env }} python -c "import marray_xarray"
+
+      - name: run tests
+        if: success()
+        id: status
+        run: |
+          pixi run -e ${{ matrix.env }} tests --cov=marray_xarray
